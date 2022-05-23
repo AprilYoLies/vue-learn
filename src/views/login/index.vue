@@ -1,7 +1,8 @@
 <template>
   <div>
     <el-card class="login-form-layout">
-      <el-form :model="loginForm"
+      <el-form autoComplete="on"
+               :model="loginForm"
                :rules="loginRules"
                ref="loginForm">
         <div style="text-align: center">
