@@ -26,7 +26,7 @@ const user = {
 
   actions: {
     // 登录
-    Login({ commit }, userInfo) {
+    Login({ commit }, userInfo) { // es6 的结构赋值，Action 接受一个与 store 实例具有相同方法和属性的 context 参数对象，这里就是取的 context.commit 提交一个 mutation
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
