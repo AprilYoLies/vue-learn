@@ -4,7 +4,7 @@
       <el-form autoComplete="on"
                :model="loginForm"
                :rules="loginRules"
-               ref="loginForm">
+               ref="loginForm"> <!-- 用于选中该dom元素 -->
         <div style="text-align: center">
           <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #409EFF"></svg-icon>
         </div>
@@ -39,15 +39,35 @@
           <el-button style="width: 45%" type="primary" :loading="loading" @click.native.prevent="handleLogin">
             登录
           </el-button>
+          <el-button style="width: 45%" type="primary" @click.native.prevent="handleTry">
+            获取体验账号
+          </el-button>
         </el-form-item>
       </el-form>
     </el-card>
+    <img :src="login_center_bg" class="login-center-layout" alt="背景图">
+    <el-dialog
+      title="公众号二维码"
+      :visible.sync="dialogVisible"
+      :show-close="false"
+      :center="true"
+      width="30%">
+      <div style="text-align: center">
+        <span class="font-title-large"><span class="color-main font-extra-large">关注公众号</span>回复<span class="color-main font-extra-large">体验</span>获取体验账号</span>
+        <br>
+        <img src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/banner/qrcode_for_macrozheng_258.jpg" width="160" height="160" style="margin-top: 10px">
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogConfirm">确定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import {isValidUsername} from '@/utils/validate';
-import {setCookie} from '@/utils/support';
+import {setCookie, getCookie} from '@/utils/support';
+import login_center_bg from '@/assets/images/login_center_bg.png'
 
 export default {
   name: "login",
@@ -77,6 +97,18 @@ export default {
       },
       loading: false,
       pwdType: 'password',
+      login_center_bg,
+      dialogVisible: false,
+    }
+  },
+  created() {
+    this.loginForm.username = getCookie("username");
+    this.loginForm.password = getCookie("password");
+    if(this.loginForm.username === undefined || this.loginForm.username == null || this.loginForm.username === ''){
+      this.loginForm.username = 'admin';
+    }
+    if(this.loginForm.password === undefined || this.loginForm.password == null){
+      this.loginForm.password = '';
     }
   },
   methods: {
@@ -104,7 +136,13 @@ export default {
           return false
         }
       })
-    }
+    },
+    handleTry(){
+      this.dialogVisible =true
+    },
+    dialogConfirm(){
+      this.dialogVisible =false;
+    },
   }
 }
 </script>
@@ -121,5 +159,14 @@ export default {
 
   .login-title {
     text-align: center;
+  }
+
+  .login-center-layout {
+    background: #409EFF;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 200px;
   }
 </style>
