@@ -42,7 +42,7 @@ const user = {
     },
 
     // 获取用户信息
-    GetInfo({ commit, state }) {
+    GetInfo({ commit}) {
       return new Promise((resolve, reject) => {
         getInfo().then(response => {
           const data = response.data
