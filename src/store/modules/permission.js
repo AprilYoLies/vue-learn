@@ -1,4 +1,4 @@
-// import { asyncRouterMap, constantRouterMap } from '@/router/index';
+import { asyncRouterMap, constantRouterMap } from '@/router/index';
 
 //判断是否有权限访问该菜单
 function hasPermission(menus, route) {
@@ -66,41 +66,39 @@ function compare(p){
 
 const permission = {
   state: {
-    // routers: constantRouterMap,
+    routers: constantRouterMap,
     addRouters: []
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
-      state.addRouters = routers;
-      // state.routers = constantRouterMap.concat(routers);
+      state.addRouters = routers; // 新加的路由
+      state.routers = constantRouterMap.concat(routers);  // 将新加的路由添加到常量路由中
     }
   },
   actions: {
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
         const { menus } = data;
-        const { username } = data;
-        // const accessedRouters = asyncRouterMap.filter(v => {
-        //   //admin帐号直接返回所有菜单
-        //   // if(username==='admin') return true;
-        //   if (hasPermission(menus, v)) {
-        //     if (v.children && v.children.length > 0) {
-        //       v.children = v.children.filter(child => {
-        //         if (hasPermission(menus, child)) {
-        //           return child
-        //         }
-        //         return false;
-        //       });
-        //       return v
-        //     } else {
-        //       return v
-        //     }
-        //   }
-        //   return false;
-        // });
-        // //对菜单进行排序
-        // sortRouters(accessedRouters);
-        // commit('SET_ROUTERS', accessedRouters);
+        const accessedRouters = asyncRouterMap.filter(v => {
+          //admin帐号直接返回所有菜单
+          if (hasPermission(menus, v)) {
+            if (v.children && v.children.length > 0) {
+              v.children = v.children.filter(child => {
+                if (hasPermission(menus, child)) {
+                  return child
+                }
+                return false;
+              });
+              return v
+            } else {
+              return v
+            }
+          }
+          return false;
+        });
+        //对菜单进行排序
+        sortRouters(accessedRouters);
+        commit('SET_ROUTERS', accessedRouters);
         resolve();
       })
     }
