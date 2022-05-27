@@ -1,22 +1,24 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Layout from '../views/layout/Layout'
 
 Vue.use(Router)
 
 export const constantRouterMap = [
-  {path: '/login', component: () => import('@/views/login/index'), hidden: true},
-  // {path: '/404', component: () => import('@/views/404'), hidden: true},
-  // {
-  //   path: '',
-  //   component: Layout,
-  //   redirect: '/home',
-  //   children: [{
-  //     path: 'home',
-  //     name: 'home',
-  //     component: () => import('@/views/home/index'),
-  //     meta: {title: '首页', icon: 'home'}
-  //   }]
-  // }
+  {path: '/login', name: 'login', component: () => import('@/views/login/index'), hidden: true},
+  // {path: '/404', name: '404', component: () => import('@/views/404'), hidden: true},
+  {
+    path: '',
+    name: 'home',
+    component: Layout,
+    redirect: '/home',
+    children: [{
+      path: 'home',
+      name: 'home',
+      component: () => import('@/views/home/index'),
+      meta: {title: '首页', icon: 'home'}
+    }]
+  }
 ]
 
 export const asyncRouterMap = [
@@ -346,12 +348,7 @@ export const asyncRouterMap = [
   // {path: '*', redirect: '/404', hidden: true}
 ]
 
-export default new Router({ // 创建 router 实例，然后传 `routes` 配置
-  routes: [
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('@/views/login')
-    }
-  ]
+export default new Router({
+  // 创建 router 实例，然后传 `routes` 配置
+  routes: constantRouterMap
 })
