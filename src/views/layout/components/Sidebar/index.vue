@@ -1,6 +1,6 @@
 <template>
   <scroll-bar>
-    侧边栏
+    侧边栏内容
   </scroll-bar>
 </template>
 
