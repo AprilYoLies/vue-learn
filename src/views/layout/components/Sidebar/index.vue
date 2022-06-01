@@ -1,16 +1,20 @@
 <template>
   <scroll-bar>
-    侧边栏内容
+    <el-menu>
+
+    </el-menu>
   </scroll-bar>
 </template>
 
 <script>
+import SidebarItem from './SidebarItem'
 import ScrollBar from '@/components/ScrollBar'
 
 export default {
   name: "index",
   components: {
-    ScrollBar
+    ScrollBar,
+    SidebarItem
   }
 }
 </script>
