@@ -1,8 +1,6 @@
 <template>
   <div>
-    <sidebar>
-
-    </sidebar>
+    <sidebar class="sidebar-container"></sidebar>
   </div>
 </template>
 
@@ -17,6 +15,12 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style rel="stylesheet/scss" lang="scss" scoped>
+@import "src/styles/mixin.scss";
+.app-wrapper {
+  @include clearfix;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
 </style>
