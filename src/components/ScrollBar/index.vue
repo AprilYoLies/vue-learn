@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div>
+  <div class="scroll-container">
+    <div class="scroll-wrapper">
       <slot></slot>
     </div>
   </div>
@@ -12,6 +12,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
+@import '../../styles/variables.scss';
 
+.scroll-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $menuBg;
+  .scroll-wrapper {
+    position: absolute;
+    width: 100%!important;
+  }
+}
 </style>
