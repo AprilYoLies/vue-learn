@@ -34,7 +34,7 @@ export default {
       return this.routers
     },
     isCollapse() {
-      return this.sidebar.opened
+      return !this.sidebar.opened
     }
   }
 }

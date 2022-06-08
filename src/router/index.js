@@ -24,7 +24,7 @@ export const constantRouterMap = [
 export const asyncRouterMap = [
   {
     path: '/pms',
-    // component: Layout,
+    component: Layout,
     redirect: '/pms/product',
     name: 'pms',
     meta: {title: '商品', icon: 'product'},

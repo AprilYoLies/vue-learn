@@ -9,7 +9,7 @@
         </el-menu-item>
       </router-link>
 
-      <el-submenu :index="item.name||item.path" :key="item.name">
+      <el-submenu v-else :index="item.name||item.path" :key="item.name">
         <template slot="title">
           <svg-icon v-if="item.meta&&item.meta.icon" :icon-class="item.meta.icon"></svg-icon>
           <span v-if="item.meta&&item.meta.title" slot="title">{{item.meta.title}}</span>
@@ -37,7 +37,8 @@ export default {
       type: Array
     },
     isNest: {
-      Type: Boolean
+      Type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -49,7 +50,7 @@ export default {
     }
   }
 }
-</script>package-lock.json
+</script>
 
 <style scoped>
 
