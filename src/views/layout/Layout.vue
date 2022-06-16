@@ -1,6 +1,10 @@
 <template>
   <div class="app-wrapper" :class="classObj">
     <sidebar class="sidebar-container"></sidebar>
+    <div class="main-container">
+      haha
+<!--      <navbar></navbar>-->
+    </div>
   </div>
 </template>
 
