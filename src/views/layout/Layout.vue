@@ -2,19 +2,19 @@
   <div class="app-wrapper" :class="classObj">
     <sidebar class="sidebar-container"></sidebar>
     <div class="main-container">
-      haha
-<!--      <navbar></navbar>-->
+      <navbar></navbar>
     </div>
   </div>
 </template>
 
 <script>
-import { Sidebar } from './components'
+import { Sidebar, Navbar } from './components'
 
 export default {
   name: "Layout",
   components: {
-    Sidebar
+    Sidebar,
+    Navbar
   },
   computed: {
     sidebar() {
