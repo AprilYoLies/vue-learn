@@ -1,5 +1,5 @@
 <template>
-  <el-menu class="navbar">
+  <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
   </el-menu>
 </template>
