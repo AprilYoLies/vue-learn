@@ -3,18 +3,20 @@
     <sidebar class="sidebar-container"></sidebar>
     <div class="main-container">
       <navbar></navbar>
+      <app-main></app-main>
     </div>
   </div>
 </template>
 
 <script>
-import { Sidebar, Navbar } from './components'
+import { Sidebar, Navbar, AppMain } from './components'
 
 export default {
   name: "Layout",
   components: {
     Sidebar,
-    Navbar
+    Navbar,
+    AppMain
   },
   computed: {
     sidebar() {
